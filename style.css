@@ -1,0 +1,17 @@
+.turnOfPlayer{
+    display: flex;
+    justify-content: center;
+}
+
+#board{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cell{
+    background-color: green;
+    height:50px;
+    width: 50px;
+}

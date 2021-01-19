@@ -17,8 +17,6 @@ for(let i = 0; i < cell.length - 1;  i++){
         putStone(index);
         changeStone(index);
         changeOrder();
-        console.log(currentStone);
-        console.log(player);
 
         headTextChange();
     })};
@@ -86,23 +84,40 @@ const changeStone = (index) => {
     // black
     if (prevLeftCell.match(blackStone) && prevCell.match(whiteStone)){
         let targetIndex = index - 1;
+        if(!identifyEdgeCell(targetIndex,numIndex)){
         putStone(targetIndex);
+        }
     }
     // white
     if (prevLeftCell.match(whiteStone) && prevCell.match(blackStone)){
         let targetIndex = index - 1;
+        if(!identifyEdgeCell(targetIndex,numIndex)){
         putStone(targetIndex);
+        }
     }
 
     /// right
     // black
     if (nextRightCell.match(blackStone) && nextCell.match(whiteStone)){
         let targetIndex = index + 1;
-        putStone(targetIndex)
+        if(!identifyEdgeCell(targetIndex,numIndex)){
+            putStone(targetIndex);
+        }
     }
     // white
     if (nextRightCell.match(whiteStone) && nextCell.match(blackStone)){
         let targetIndex = index + 1;
-        putStone(targetIndex)
+        if(!identifyEdgeCell(targetIndex,numIndex)){
+            putStone(targetIndex);
+        }
     }
+}
+
+// indentify edge cell
+const identifyEdgeCell = (index, numberOfIndex) => {
+    let edgeCell = false;
+    if(index % numberOfIndex == 0 || index % numberOfIndex -1 == 0 || index == 0){
+        edgeCell = true; 
+    }
+    return edgeCell;
 }

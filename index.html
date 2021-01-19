@@ -9,7 +9,6 @@
 <body>
     <div class="container">
         <p id="turnOfPlayer">Black Turn</p>
-        <p id="winner"><!-- display winner --></p>
 
         <Table id="board">
             <!-- headline -->
@@ -64,8 +63,8 @@
                 <td class="cell"></td>
                 <td class="cell"></td>
                 <td class="cell"></td>
-                <td class="cell"></td>
-                <td class="cell"></td>
+                <td class="cell">●</td>
+                <td class="cell">○</td>
                 <td class="cell"></td>
                 <td class="cell"></td>
                 <td class="cell"></td>
@@ -75,8 +74,8 @@
                 <td class="cell"></td>
                 <td class="cell"></td>
                 <td class="cell"></td>
-                <td class="cell"></td>
-                <td class="cell"></td>
+                <td class="cell">○</td>
+                <td class="cell">●</td>
                 <td class="cell"></td>
                 <td class="cell"></td>
                 <td class="cell"></td>
@@ -114,8 +113,9 @@
                 <td class="cell"></td>
                 <td class="cell"></td>
             </tr>
+            
         </Table>
-        <button onclick="judgeWinner()">Jadge winner</button>
+        <button onclick="judgeWinner()">Judge winner</button>
     </div>
     <script src="main.js"></script>
 </body>

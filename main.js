@@ -82,10 +82,36 @@ const changeStone = (index) => {
         let prevLeftCell = cell[index - 2].innerHTML;
         let prevCell = cell[index - 1].innerHTML;
 
+        // the case of previous cell and indexCell were same
+        // if(prevCell.match(currentStone)){
+        //     break;
+        // }
         if (prevLeftCell.match(currentStone) && prevCell.match(nextStone)){
             let targetIndex = index - 1;
-            if(!identifyEdgeCell(targetIndex,numIndex)){
+            if(!identifyEdgeCell(targetIndex)){
             putStone(targetIndex);
+            }
+        }
+        // the case of there are no same stone of indexCell in the same row
+        if(prevCell.match(nextStone)){
+            let changeIndexList = [];
+            let i = 0;
+            while(prevLeftCell.match(nextStone)){
+                if(identifyEdgeCell(index - 1 - i)){
+                    changeIndexList = [];
+                    break;
+                }
+                changeIndexList.push(index - 1 - i);
+                prevCell = cell[index - 1 - i].innerHTML;
+                prevLeftCell = cell[index - 2 - i].innerHTML;
+                i ++;
+            }
+            console.log(changeIndexList);
+            for(var j = 0; j<changeIndexList.length; j++){
+                let targetIndex = changeIndexList[j];
+                if(!identifyEdgeCell(targetIndex)){
+                    putStone(targetIndex);
+                }
             }
         }
     }
@@ -97,8 +123,32 @@ const changeStone = (index) => {
 
         if (nextRightCell.match(currentStone) && nextCell.match(nextStone)){
             let targetIndex = index + 1;
-            if(!identifyEdgeCell(targetIndex,numIndex)){
+            if(!identifyEdgeCell(targetIndex)){
                 putStone(targetIndex);
+            }
+        }
+
+        if(nextCell.match(nextStone)){
+            let changeIndexList = [];
+            let i = 0;
+            while(nextRightCell.match(nextStone)){
+
+                if(identifyEdgeCell(index + 1 + i)){
+                    changeIndexList = [];
+                    break;
+                }
+
+                console.log(changeIndexList);
+                changeIndexList.push(index + 1 + i);
+                nextCell = cell[index + 1 + i].innerHTML;
+                nextRightCell = cell[index + 2 + i].innerHTML;
+                i ++;
+            }
+            for(var j = 0; j<changeIndexList.length; j++){
+                let targetIndex = changeIndexList[j];
+                if(!identifyEdgeCell(targetIndex)){
+                    putStone(targetIndex);
+                }
             }
         }
     }
@@ -129,10 +179,7 @@ const changeStone = (index) => {
 }
 
 // indentify edge cell
-const identifyEdgeCell = (index, numberOfIndex) => {
-    let edgeCell = false;
-    if(index % numberOfIndex == 0 || (index + 1) % numberOfIndex == 0 ){
-        edgeCell = true; 
-    }
-    return edgeCell;
+const identifyEdgeCell = (index) => {
+    edgeCells = [0,7,8,15,16,23,24,31,32,39,40,47,48,55,56,63]
+    return edgeCells.includes(index);
 }

@@ -92,11 +92,12 @@ const changeStone = (index) => {
             putStone(targetIndex);
             }
         }
+        //※There is a BUG!!!! need to modify
         // the case of there are no same stone of indexCell in the same row
         if(prevCell.match(nextStone)){
             let changeIndexList = [];
             let i = 0;
-            while(prevLeftCell.match(nextStone)){
+            while(prevLeftCell.match(nextStone) || !(prevLeftCell == currentStone ||  prevLeftCell == nextStone)){
                 if(identifyEdgeCell(index - 1 - i)){
                     changeIndexList = [];
                     break;
@@ -106,7 +107,6 @@ const changeStone = (index) => {
                 prevLeftCell = cell[index - 2 - i].innerHTML;
                 i ++;
             }
-            console.log(changeIndexList);
             for(var j = 0; j<changeIndexList.length; j++){
                 let targetIndex = changeIndexList[j];
                 if(!identifyEdgeCell(targetIndex)){
@@ -131,14 +131,12 @@ const changeStone = (index) => {
         if(nextCell.match(nextStone)){
             let changeIndexList = [];
             let i = 0;
-            while(nextRightCell.match(nextStone)){
+            while(nextRightCell.match(nextStone) || !(nextRightCell == currentStone ||  nextRightCell == nextStone)){
 
                 if(identifyEdgeCell(index + 1 + i)){
                     changeIndexList = [];
                     break;
                 }
-
-                console.log(changeIndexList);
                 changeIndexList.push(index + 1 + i);
                 nextCell = cell[index + 1 + i].innerHTML;
                 nextRightCell = cell[index + 2 + i].innerHTML;
@@ -152,7 +150,6 @@ const changeStone = (index) => {
             }
         }
     }
-
 
     //// vertical direction
     /// top to bottom
